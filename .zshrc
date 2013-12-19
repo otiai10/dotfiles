@@ -6,13 +6,16 @@ alias st='git status'
 alias br='git branch'
 alias dv='git diff | vim -'
 alias stg='git diff --cached | vim -'
+alias com='git commit'
 
 # ----- PROMPT -----
 ## PROMPT
 PROMPT=$'[%*] → '
 ## RPROMPT
-RPROMPT=$'`branch-check` %~'
-function branch-check {
+RPROMPT=$'`branch-status-check` %~' # %~はpwd
+setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
+# {{{ methods for RPROMPT
+function branch-status-check {
     local prefix branchname suffix
         # .gitの中だから除外
         if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
@@ -24,27 +27,27 @@ function branch-check {
             return
         fi
         prefix=`get-branch-status`
-        echo "${prefix} ${branchname}"
+        suffix=''
+        echo "${prefix}${branchname}${suffix}"
 }
 function get-branch-name {
-    echo `git branch 2> /dev/null` | sed -e s/\*//g
+    echo `git branch 2> /dev/null` | sed -e s/\*\ //g
 }
 function get-branch-status {
     local res
         output=`git status 2> /dev/null`
         if [[ -n `echo $output | grep "^nothing to commit"` ]]; then
-            res='cleanです'
-        elif [[ -n `echo $output | grep "^nothing added"` ]]; then
-            res='1'
-        elif [[ -n `echo $output | grep "^Untracked"` ]]; then
-            res='new fileがあります'
+            res='' # status Clean
+        elif [[ -n `echo $output | grep "^# Untracked files:"` ]]; then
+            res='?:' # Untracked
+        elif [[ -n `echo $output | grep "^# Changes not staged for commit:"` ]]; then
+            res='M:' # Modified
         else
-            res='modifiedがあります'
+            res='A:' # Added to commit
         fi
         echo $res
 }
-
-setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
+# }}}
 
 # ----- PATH -----
 export PATH=/bin:/usr/bin:/usr/local/bin:$PATH
