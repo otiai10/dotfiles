@@ -1,31 +1,33 @@
 # ----- alias ------
-## generals
+## {{{ generals
 alias ls='ls -G' # MacOS
 alias ll='ls -la'
-## git
+## }}}
+## {{{ git
 alias st='git status'
 alias br='git branch'
 alias dv='git diff | vim -'
 alias stg='git diff --cached | vim -'
 alias cho='git checkout'
 alias com='git commit'
+### }}}
 
 # ----- setting -----
-## 言語設定
+## {{{ 言語設定
 export LANG=ja_JP.UTF-8
-## ビープ音ならさない
+## }}}
+## {{{ ビープ音ならさない
 setopt no_beep
-## 引数も補完
+## }}}
+## {{{ 引数も補完
 setopt magic_equal_subst
+## }}}
 
 # ----- PROMPT -----
-## PROMPT
 PROMPT=$'%{\e[34;1m%}[%*] → %{\e[0m%}'
-## RPROMPT
 RPROMPT=$'`branch-status-check` %~' # %~はpwd
-setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
- 
 # {{{ methods for RPROMPT
+setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
 # fg[color]表記と$reset_colorを使いたい
 # @see https://wiki.archlinux.org/index.php/zsh
 autoload -U colors; colors
@@ -71,15 +73,18 @@ function get-branch-status {
 
 # ----- PATH -----
 export PATH=/bin:/usr/bin:/usr/local/bin:$PATH
-## golang
+## {{{ golang
 export GOROOT=$HOME/go
 export GOPATH=$HOME/proj/go
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-## pyenv
+## }}}
+## {{{ pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
 if [ -d "${PYENV_ROOT}" ]; then
     export PATH=${PYENV_ROOT}/bin:$PATH
     eval "$(pyenv init -)"
 fi
-## nvm
+# }}}
+## {{{ nvm
 source ${HOME}/.nvm/nvm.sh
+# }}}
