@@ -2,6 +2,7 @@
 ## {{{ generals
 alias ls='ls -G' # MacOS
 alias ll='ls -la'
+alias  b='cd ..'
 ## }}}
 ## {{{ git
 alias st='git status'
