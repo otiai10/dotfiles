@@ -25,8 +25,12 @@ export LANG=ja_JP.UTF-8
 ## {{{ ビープ音ならさない
 setopt no_beep
 ## }}}
-## {{{ 引数も補完
+## {{{ 補完
+### 引数も補完
 setopt magic_equal_subst
+### オプションも補完
+autoload -Uz compinit
+compinit
 ## }}}
 
 # ----- PROMPT -----
