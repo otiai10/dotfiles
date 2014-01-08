@@ -32,6 +32,11 @@ setopt magic_equal_subst
 autoload -Uz compinit
 compinit
 ## }}}
+## {{{ ls色
+### デフォルトのLS色が気に食わない
+### @see http://d.hatena.ne.jp/edvakf/20080413/1208042916
+export LSCOLORS=gxfxcxdxbxegedabagacad
+## }}}
 
 # ----- PROMPT -----
 PROMPT=$'%{\e[34;1m%}[%*] → %{\e[0m%}'
