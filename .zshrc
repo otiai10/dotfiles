@@ -12,6 +12,11 @@ alias stg='git diff --cached | vim -'
 alias cho='git checkout'
 alias com='git commit'
 ### }}}
+## {{{ tmux
+alias tl='tmux ls'
+alias ta='tmux a'
+alias t='tmux'
+## }}}
 
 # ----- setting -----
 ## {{{ 言語設定
