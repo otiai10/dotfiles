@@ -1,46 +1,44 @@
-# ----- alias ------
-## {{{ generals
-alias ls='ls -G' # MacOS
-alias ll='ls -la'
-alias  b='cd ..'
-## }}}
-## {{{ git
-alias st='git status'
-alias br='git branch'
-alias dv='git diff | vim -'
-alias stg='git diff --cached | vim -'
-alias cho='git checkout'
-alias com='git commit'
-### }}}
-## {{{ tmux
-alias tl='tmux ls'
-alias ta='tmux a'
-alias t='tmux'
-## }}}
-
-# ----- setting -----
-## {{{ 言語設定
+# lang
 export LANG=ja_JP.UTF-8
-## }}}
-## {{{ ビープ音ならさない
+
+# beep sound
 setopt no_beep
-## }}}
-## {{{ 補完
-### 引数も補完
+
+# complement
 setopt magic_equal_subst
-### オプションも補完
 autoload -Uz compinit
 compinit
-## }}}
-## {{{ ls色
-### デフォルトのLS色が気に食わない
-### @see http://d.hatena.ne.jp/edvakf/20080413/1208042916
-export LSCOLORS=gxfxcxdxbxegedabagacad
-## }}}
 
-# ----- PROMPT -----
-PROMPT=$'%{\e[34;1m%}[%*] → %{\e[0m%}'
-RPROMPT=$'`branch-status-check` %~' # %~はpwd
+# prompt
+PROMPT=$'%B%* (๑˃̵ᴗ˂̵)و%b '
+RPROMPT=$'`branch-status-check` %~'
+
+# alias
+alias ll='ls -la'
+alias vi='vim'
+alias  b='cd ..'
+
+# alias.git
+alias st='git status'
+alias gid='git diff'
+alias dv='git diff | vim -'
+alias br='git branch'
+alias cho='git checkout'
+alias stg='git diff --cached'
+alias com='git commit'
+
+# python
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+
+# go
+export GOROOT=$HOME/.go
+export GOPATH=$HOME/proj/go
+export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
+
 # {{{ methods for RPROMPT
 setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
 # fg[color]表記と$reset_colorを使いたい
@@ -84,22 +82,4 @@ function get-branch-status {
         # echo ${color}${res}'%{'${reset_color}'%}'
         echo ${color} # 色だけ返す
 }
-# }}}
-
-# ----- PATH -----
-export PATH=/bin:/usr/bin:/usr/local/bin:$PATH
-## {{{ golang
-export GOROOT=$HOME/go
-export GOPATH=$HOME/proj/go
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-## }}}
-## {{{ pyenv
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/bin:$PATH
-    eval "$(pyenv init -)"
-fi
-# }}}
-## {{{ nvm
-source ${HOME}/.nvm/nvm.sh
 # }}}
