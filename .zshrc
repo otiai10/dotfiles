@@ -12,6 +12,10 @@ compinit
 # prompt
 PROMPT=$'%B%* (๑˃̵ᴗ˂̵)و%b '
 RPROMPT=$'`branch-status-check` %~'
+function pre {
+    PROMPT='%% '
+    RPROMPT=''
+}
 
 # alias
 alias ll='ls -la'
@@ -27,6 +31,11 @@ alias cho='git checkout'
 alias stg='git diff --cached'
 alias com='git commit'
 
+# alias.tmux
+alias t='tmux'
+alias ta='tmux a'
+alias tl='tmux ls'
+
 # python
 export PYENV_ROOT="${HOME}/.pyenv"
 if [ -d "${PYENV_ROOT}" ]; then
@@ -34,10 +43,16 @@ if [ -d "${PYENV_ROOT}" ]; then
     eval "$(pyenv init -)"
 fi
 
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+
 # go
 export GOROOT=$HOME/.go
 export GOPATH=$HOME/proj/go
 export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
+
+# nvm
+source .nvm/nvm.sh
 
 # {{{ methods for RPROMPT
 setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する

@@ -1,6 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/hiromu.ochiai/gree/ggpsns/client/src-cov'
-let g:netrw_dirhist_2='/Users/hiromu.ochiai/proj/chrome/kanColleWidget/manifest'
-let g:netrw_dirhist_3='/Users/hiromu.ochiai/proj/chrome/kanColleWidget/src/js/pages'
-let g:netrw_dirhist_4='/Users/hiromu.ochiai/proj/chrome/kanColleWidget/manifest'
