@@ -10,8 +10,9 @@ autoload -Uz compinit
 compinit
 
 # prompt
-PROMPT=$'%B%* (๑˃̵ᴗ˂̵)و%b '
+PROMPT=$'%B%* `get-branch-status-color`(๑˃̵ᴗ˂̵)و%f %b'
 RPROMPT=$'`branch-status-check` %~'
+setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
 function pre {
     PROMPT='%% '
     RPROMPT=''
@@ -52,10 +53,9 @@ export GOPATH=$HOME/proj/go
 export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
 
 # nvm
-source .nvm/nvm.sh
+source ~/.nvm/nvm.sh
 
 # {{{ methods for RPROMPT
-setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
 # fg[color]表記と$reset_colorを使いたい
 # @see https://wiki.archlinux.org/index.php/zsh
 autoload -U colors; colors
@@ -70,7 +70,7 @@ function branch-status-check {
         if [[ -z $branchname ]]; then
             return
         fi
-        prefix=`get-branch-status` #色だけ返ってくる
+        prefix=`get-branch-status-color` #色だけ返ってくる
         suffix='%{'${reset_color}'%}'
         echo ${prefix}${branchname}${suffix}
 }
@@ -78,7 +78,7 @@ function get-branch-name {
     # gitディレクトリじゃない場合のエラーは捨てます
     echo `git rev-parse --abbrev-ref HEAD 2> /dev/null`
 }
-function get-branch-status {
+function get-branch-status-color {
     local res color
         output=`git status 2> /dev/null`
         if [[ -n `echo $output | grep "^nothing to commit"` ]]; then
