@@ -80,14 +80,14 @@ function get-branch-name {
 }
 function get-branch-status-color {
     local res color
-        output=`git status 2> /dev/null`
-        if [[ -n `echo $output | grep "^nothing to commit"` ]]; then
+        output=`git status -s 2> /dev/null`
+        if [[ -z "$output" ]]; then
             res=':' # status Clean
             color='%{'${fg[green]}'%}'
-        elif [[ -n `echo $output | grep "^# Untracked files:"` ]]; then
+        elif [[ $output =~ "[\n]?\?\? " ]]; then
             res='?:' # Untracked
             color='%{'${fg[yellow]}'%}'
-        elif [[ -n `echo $output | grep "^# Changes not staged for commit:"` ]]; then
+        elif [[ $output =~ "[\n]? M " ]]; then
             res='M:' # Modified
             color='%{'${fg[red]}'%}'
         else
