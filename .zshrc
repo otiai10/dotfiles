@@ -48,6 +48,8 @@ fi
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 # go
+alias gomat='go fmt ./...'
+alias gobuild='go build ./...'
 export GOROOT=$HOME/.go
 export GOPATH=$HOME/proj/go
 export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
