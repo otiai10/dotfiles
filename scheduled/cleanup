@@ -1,7 +1,12 @@
 #!/bin/zsh
 
-setopt nonomatch
+# This script is
+# for cleanup useless files from Desktop and Downloads of MacOS.
+# To install this, open crontab and add
+# 0 5 * * * ~/dotfiles/scheduled/cleanup
 
+# ignore no match errors
+setopt nonomatch
 # cleanup desktop
 rm ~/Desktop/*.(gif|jpg|jpeg|png|dmg|zip|tar|gz) 2>/dev/null
 # cleanup downloads
