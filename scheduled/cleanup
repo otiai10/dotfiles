@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+setopt nonomatch
+
+# cleanup desktop
+rm ~/Desktop/*.(gif|jpg|jpeg|png|dmg|zip|tar|gz) 2>/dev/null
+# cleanup downloads
+rm ~/Downloads/*.(gif|jpg|jpeg|png|dmg|zip|tar|gz) 2>/dev/null
