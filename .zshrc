@@ -19,7 +19,13 @@ function pre {
 }
 
 # alias
-alias ll='ls -la'
+case "${OSTYPE}" in
+darwin*)
+    alias ll='ls -lGa'
+    ;;
+linux*)
+    alias ll='ls -la --color'
+esac
 alias vi='vim'
 alias  b='cd ..'
 
@@ -82,8 +88,11 @@ function get-branch-name {
 }
 function get-branch-status-color {
     local res color
-        output=`git status -s 2> /dev/null`
-        if [[ -z "$output" ]]; then
+        output=`git status -s 2>&1`
+        if [[ $output =~ "fatal" ]]; then
+            res=''
+            color='%{'${fg[white]}'%}'
+        elif [[ -z $output ]]; then
             res=':' # status Clean
             color='%{'${fg[green]}'%}'
         elif [[ $output =~ "[\n]?\?\? " ]]; then
