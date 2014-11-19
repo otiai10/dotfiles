@@ -26,6 +26,9 @@ darwin*)
 linux*)
     alias ll='ls -la --color'
 esac
+# change dir color of ls
+# http://mironal-memo.blogspot.jp/2012/09/macosx-ls.html
+export LSCOLORS=ExFxCxDxBxegedabagacad
 alias vi='vim'
 alias  b='cd ..'
 
