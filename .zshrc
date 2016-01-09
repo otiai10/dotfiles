@@ -1,3 +1,23 @@
+# terminal
+# echo -ne "\033]0;${USER}@${LANG}\007"
+# function chit() {
+#     echo -ne "\033]0;$1\007"
+# }
+
+function envinstall() {
+    envs=`docker-machine env ${1}`
+    eval ${envs}
+    echo -e "${envs}\n...\nENVs of ${1} installed"
+}
+
+function tz() {
+    totsuzen $1 | pbcopy
+}
+
+function clip() {
+    cat $1 | pbcopy
+}
+
 # lang
 export LANG=ja_JP.UTF-8
 
