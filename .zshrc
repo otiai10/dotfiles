@@ -10,14 +10,6 @@ function envinstall() {
     echo -e "${envs}\n...\nENVs of ${1} installed"
 }
 
-function tz() {
-    totsuzen $1 | pbcopy
-}
-
-function clip() {
-    cat $1 | pbcopy
-}
-
 # lang
 export LANG=ja_JP.UTF-8
 
@@ -54,7 +46,6 @@ alias  b='cd ..'
 
 # alias.git
 alias st='git status'
-alias gid='git diff'
 alias dv='git diff | vim -'
 alias br='git branch'
 alias cho='git checkout'
@@ -62,7 +53,6 @@ alias stg='git diff --cached'
 alias com='git commit'
 
 # alias.tmux
-alias t='tmux'
 alias ta='tmux a'
 alias tl='tmux ls'
 
@@ -77,8 +67,6 @@ fi
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 # go
-alias gomat='go fmt ./...'
-alias gobuild='go build ./...'
 export GOROOT=$HOME/.go
 export GOPATH=$HOME/proj/go
 export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
