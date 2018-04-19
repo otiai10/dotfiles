@@ -4,6 +4,9 @@
 #     echo -ne "\033]0;$1\007"
 # }
 
+# Prefer Celler bin
+export PATH=/usr/local/bin:$PATH
+
 function envinstall() {
     envs=`docker-machine env ${1}`
     eval ${envs}
@@ -22,9 +25,13 @@ autoload -Uz compinit
 compinit
 
 # prompt
-PROMPT=$'%B%* `get-branch-status-color`(๑˃̵ᴗ˂̵)و%f %b'
-RPROMPT=$'`branch-status-check` %~'
-setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
+function init_prompt {
+    PROMPT=$'%B%* `get-branch-status-color`(๑˃̵ᴗ˂̵)و%f %b'
+    RPROMPT=$'`branch-status-check` %~'
+    setopt prompt_subst #表示毎にPROMPTで設定されている文字列を評価する
+}
+init_prompt || PROMPT=$'%B%% %b'
+
 function pre {
     PROMPT='%% '
     RPROMPT=''
@@ -34,6 +41,7 @@ function pre {
 case "${OSTYPE}" in
 darwin*)
     alias ll='ls -lGa'
+    alias chrome.exe='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
     ;;
 linux*)
     alias ll='ls -la --color'
@@ -56,23 +64,22 @@ alias com='git commit'
 alias ta='tmux a'
 alias tl='tmux ls'
 
-# python
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/bin:$PATH
-    eval "$(pyenv init -)"
-fi
+# alias for IPAddress
+alias myip='curl ifconfig.co'
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
 # go
-export GOROOT=$HOME/.go
+export GOROOT=$HOME/.go/1.8.1
 export GOPATH=$HOME/proj/go
 export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
 
 # nvm
 source ~/.nvm/nvm.sh
+
+# Downloaded tools
+export PATH=${PATH}:$HOME/proj/opt/bin
 
 # {{{ methods for RPROMPT
 # fg[color]表記と$reset_colorを使いたい
@@ -120,3 +127,25 @@ function get-branch-status-color {
         echo ${color} # 色だけ返す
 }
 # }}}
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/otiai10/.google-cloud-sdk/path.zsh.inc' ]; then source '/Users/otiai10/.google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/otiai10/.google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/otiai10/.google-cloud-sdk/completion.zsh.inc'; fi
+
+# goapp command
+# export PATH=${PATH}:${HOME}/.google-cloud-sdk/platform/google_appengine/goroot-1.8/bin
+export PATH=${PATH}:${HOME}/.google-cloud-sdk/platform/google_appengine/goroot-1.6/bin
+export APPENGINE_DEV_APPSERVER=${HOME}/.google-cloud-sdk/bin/dev_appserver.py
+
+# http://otiai10.hatenablog.com/entry/2017/06/07/112205
+export GOAPP_WATCH_CWD=1
+
+# Python with virtualenv
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+source ${HOME}/.venv/default/bin/activate
+
+# added by travis gem
+[ -f /Users/otiai10/.travis/travis.sh ] && source /Users/otiai10/.travis/travis.sh
+export PATH=${HOME}/.cargo/bin:${PATH}
