@@ -135,8 +135,7 @@ if [ -f '/Users/otiai10/.google-cloud-sdk/path.zsh.inc' ]; then source '/Users/o
 if [ -f '/Users/otiai10/.google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/otiai10/.google-cloud-sdk/completion.zsh.inc'; fi
 
 # goapp command
-# export PATH=${PATH}:${HOME}/.google-cloud-sdk/platform/google_appengine/goroot-1.8/bin
-export PATH=${PATH}:${HOME}/.google-cloud-sdk/platform/google_appengine/goroot-1.6/bin
+export PATH=${HOME}/.google-cloud-sdk/platform/google_appengine/goroot-1.9/bin:${PATH}
 export APPENGINE_DEV_APPSERVER=${HOME}/.google-cloud-sdk/bin/dev_appserver.py
 
 # http://otiai10.hatenablog.com/entry/2017/06/07/112205
