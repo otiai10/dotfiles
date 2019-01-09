@@ -71,10 +71,9 @@ alias myip='curl ifconfig.co'
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
 
-# go
-export GOROOT=$HOME/.go/1.10.3
-export GOPATH=$HOME/proj/go
-export PATH=${PATH}:$GOROOT/bin:$GOPATH/bin
+# Go with gvm
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
+gvm use tip
 
 # nvm
 source ~/.nvm/nvm.sh
