@@ -1,0 +1,9 @@
+#!/bin/bash
+set -e -u
+ROOT=`cd $(dirname $0); pwd`
+echo "Linking files in ${ROOT} to ${HOME}"
+ln -s ${ROOT}/.zshrc     ${HOME}/.zshrc
+ln -s ${ROOT}/.vimrc     ${HOME}/.vimrc
+ln -s ${ROOT}/.vim       ${HOME}/.vim
+ln -s ${ROOT}/.tmux.conf ${HOME}/.tmux.conf
+echo "DONE"
