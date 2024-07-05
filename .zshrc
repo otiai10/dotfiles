@@ -14,6 +14,6 @@ compinit -d ${HOME}/.dotfiles/.zsh/zcompdump
 
 # Others
 source ${HOME}/.dotfiles/.zsh/paths
-source ${HOME}/.dotfiles/.zsh/prompt
+source ${HOME}/.dotfiles/.zsh/prompts
 source ${HOME}/.dotfiles/.zsh/aliases
 source ${HOME}/.dotfiles/.zsh/bootstrap
