@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+###############################
+# Useful command line aliases #
+###############################
+
+# vi/vim
+alias vi='vim'
+
+# ls
+alias ll='ls -la --color=auto'
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# git
+alias st='git status'
+alias dv='git diff | vim -'
+alias br='git branch'
+alias cho='git checkout'
+alias stg='git diff --cached'
+alias com='git commit'

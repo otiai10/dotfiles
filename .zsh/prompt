@@ -1,0 +1,49 @@
+#!/bin/zsh
+
+#####################
+# Prompt Decoration #
+#####################
+
+# Load `fg` and etc...
+# @See https://wiki.archlinux.org/title/Zsh#Colors for more details
+autoload -U colors && colors
+
+function colorize_text_by_status() {
+    local _t=$1 _s=$2
+    local statuscolor
+    if [[ $_s =~ "fatal" ]]; then
+        # Not in git repository
+        statuscolor=${fg[white]}
+    elif [[ -z $_s ]]; then
+        # Clean
+        statuscolor=${fg[green]}
+    elif [[ $_s =~ "[\n]?\?\? " ]]; then
+        # Untracked
+        statuscolor=${fg[yellow]}
+    elif [[ $_s =~ "[\n]? M " ]]; then
+        # Modified
+        statuscolor=${fg[red]}
+    else
+        # Added to commit (Staged)
+        statuscolor=${fg[cyan]}
+    fi
+    echo ${statuscolor}${_t}${reset_color}
+}
+
+function generate_prompt() {
+    local _loc=`basename ${PWD}`
+    if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then # Inside .git directory
+        echo ${_loc}' %% '
+        return
+    fi
+    local _st=`git status -s 2>&1`
+    if [[ $_st =~ "fatal" ]]; then # Not in git-managed directory
+        echo ${_loc}' %% '
+        return
+    fi
+    local _br=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+    echo ${_loc} `colorize_text_by_status ${_br} ${_st}`' %% '
+}
+
+PROMPT=$'`generate_prompt`'
+setopt prompt_subst # To evaluate PROMPT everytime when displayed

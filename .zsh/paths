@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+###########################################
+# Command line path to installed software #
+###########################################
+
+# brew
+export PATH=${PATH}:/opt/homebrew/bin
+
+# gvm
+[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
+
+# code
+export PATH=${PATH}:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin

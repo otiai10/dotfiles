@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+############################################
+# Bootstrap scripts for installed software #
+############################################
+
+# Vim command line software
+export VIMINIT="source ${HOME}/.dotfiles/.vimrc"
+
+# Vim Extension for VSCode (MacBook Air)
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
+defaults write com.vscodium ApplePressAndHoldEnabled -bool false                      # For VS Codium
