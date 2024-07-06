@@ -15,9 +15,9 @@ if [[ ! -f $HOME/Library/Application\ Support/Code/User/settings.json ]]; then
 ;fi
 
 # Vim Extension for VSCode (MacBook Air)
-defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
-defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
-defaults write com.vscodium ApplePressAndHoldEnabled -bool false                      # For VS Codium
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled         -bool false  # For VS Code
+defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false  # For VS Code Insider
+defaults write com.vscodium ApplePressAndHoldEnabled                 -bool false  # For VS Codium
 
 # git global ignore
 hash git &>/dev/null \
