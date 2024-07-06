@@ -1,0 +1,6 @@
+{
+    "editor.renderWhitespace": "trailing",
+    "github.copilot.advanced": {
+        "enabled": true
+    }
+}

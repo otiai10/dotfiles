@@ -7,6 +7,13 @@
 # Vim command line software
 export VIMINIT="source ${HOME}/.dotfiles/.vimrc"
 
+# VSCode
+if [[ ! -f $HOME/Library/Application\ Support/Code/User/settings.json ]]; then
+    ln -s \
+        "${HOME}/.dotfiles/.vscode/settings.json" \
+        "${HOME}/Library/Application Support/Code/User/settings.json"
+;fi
+
 # Vim Extension for VSCode (MacBook Air)
 defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              # For VS Code
 defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      # For VS Code Insider
