@@ -18,8 +18,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 # }}}
 
-# {{{ VS Code `code` command
-export PATH=${PATH}:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+# {{{ VS Code `code` command, if Visual Studio Code is installed
+if [ -d "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" ]; then
+  export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+else
+  echo "Visual Studio Code is not installed"
+fi
 # }}}
 
 # {{{ Google Cloud SDK.
