@@ -2,5 +2,7 @@
     "editor.renderWhitespace": "trailing",
     "github.copilot.advanced": {
         "enabled": true
-    }
+    },
+    "makefile.configureOnOpen": true,
+    "svg.preview.mode": "svg"
 }

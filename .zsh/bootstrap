@@ -22,3 +22,11 @@ defaults write com.vscodium ApplePressAndHoldEnabled                 -bool false
 # git global ignore
 hash git &>/dev/null \
     && git config --global core.excludesFile "${HOME}/.dotfiles/.gitignore_global"
+
+# FIXME:
+# If VSCode is installed, install the settings.json file
+# if hash code &>/dev/null; then
+#     ln -s \
+#         "${HOME}/.dotfiles/.vscode/settings.json" \
+#         "${HOME}/Library/Application Support/Code/User/settings.json"
+# fi
