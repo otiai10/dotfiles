@@ -47,3 +47,10 @@ function generate_prompt() {
 
 PROMPT=$'`generate_prompt`'
 setopt prompt_subst # To evaluate PROMPT everytime when displayed
+
+function pre() {
+    PROMPT='%% '
+}
+function rich() {
+    PROMPT=$'`generate_prompt`'
+}
