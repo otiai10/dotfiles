@@ -23,7 +23,7 @@ export PATH=${PATH}:${GOPATH}/bin
 # }}}
 
 # {{{ uv (~/.local/bin)
-export PATH="/Users/otiai10/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
 # {{{ asdf
@@ -39,6 +39,6 @@ fi
 # }}}
 
 # {{{ Google Cloud SDK.
-if [ -f "/Users/${USER}/.google-cloud-sdk/path.zsh.inc"       ]; then . "/Users/${USER}/.google-cloud-sdk/path.zsh.inc"      ; fi
-if [ -f "/Users/${USER}/.google-cloud-sdk/completion.zsh.inc" ]; then . "/Users/${USER}/.google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f "$HOME/.google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/.google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/.google-cloud-sdk/completion.zsh.inc"; fi
 # }}}
