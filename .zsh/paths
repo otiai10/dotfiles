@@ -8,14 +8,26 @@
 export PATH=${PATH}:/opt/homebrew/bin
 # }}}
 
-# {{{ gvm
-[[ -s "${HOME}/.gvm/scripts/gvm" ]] && source "${HOME}/.gvm/scripts/gvm"
+# {{{ asdf
+if [ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]; then . /opt/homebrew/opt/asdf/libexec/asdf.sh; fi
 # }}}
 
-# {{{ nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# {{{ rust / cargo
+export PATH=${PATH}:$HOME/.cargo/bin
+# }}}
+
+# {{{ go
+export GOPATH=${HOME}/proj/go
+export PATH=${PATH}:${GOPATH}/bin
+# }}}
+
+# {{{ uv (~/.local/bin)
+export PATH="/Users/otiai10/.local/bin:$PATH"
+# }}}
+
+# {{{ asdf
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # }}}
 
 # {{{ VS Code `code` command, if Visual Studio Code is installed

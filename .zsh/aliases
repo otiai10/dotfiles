@@ -12,9 +12,15 @@ alias ll='ls -la --color=auto'
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # git
-alias st='git status'
-alias dv='git diff | vim -'
-alias br='git branch'
+alias  st='git status'
+alias  dv='git diff | vim -'
+alias  br='git branch'
 alias cho='git checkout'
 alias stg='git diff --cached'
 alias com='git commit'
+
+# AI
+alias   yolo='claude --dangerously-skip-permissions'
+alias clauto='claude --permission-mode=auto'
+alias  yolox='codex --dangerously-bypass-approvals-and-sandbox'
+
