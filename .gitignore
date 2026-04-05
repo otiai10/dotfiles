@@ -1,5 +1,6 @@
 # This file is for this dotfile repository
 .vim/.netrwhist
 .vim/.viminfo
+.vim/viminfo
 .zsh/history
 .zsh/zcompdump
