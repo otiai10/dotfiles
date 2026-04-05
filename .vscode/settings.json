@@ -1,8 +1,14 @@
 {
-    "editor.renderWhitespace": "trailing",
+    "editor.renderWhitespace": "all",
     "github.copilot.advanced": {
         "enabled": true
     },
     "makefile.configureOnOpen": true,
-    "svg.preview.mode": "svg"
+    "svg.preview.mode": "svg",
+    "jest.coverageColors": null,
+    "go.toolsManagement.autoUpdate": true,
+    "docker.extension.dockerEngineAvailabilityPrompt": false,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "chat.viewSessions.orientation": "stacked",
+    "claudeCode.preferredLocation": "panel"
 }
