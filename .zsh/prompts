@@ -54,3 +54,35 @@ function pre() {
 function rich() {
     PROMPT=$'`generate_prompt`'
 }
+
+############################
+# Tab Title & Color (OSC)  #
+############################
+
+# タブタイトルをディレクトリ名+ブランチにする（プロンプト表示ごと）
+function precmd() {
+    local _br=$(git symbolic-ref --short HEAD 2>/dev/null)
+    if [[ -n $_br ]]; then
+        print -Pn "\033]2;%1~ ($_br)\007"
+    else
+        print -Pn "\033]2;%1~\007"
+    fi
+}
+
+# ターミナル背景色をディレクトリごとに固定色にする（cd 時のみ）
+# プリセットの暗め背景色から、ディレクトリのハッシュで1つ選ぶ
+_DIR_BG_COLORS=(
+    "0d1117"  # 黒青（GitHub Dark）
+    "1a0d2e"  # 深紫
+    "0d2a0d"  # 深緑
+    "2a0d0d"  # 深赤
+    "0d1f2a"  # 深青緑
+    "2a1500"  # 深琥珀
+)
+function chpwd() {
+    (( ${#_DIR_BG_COLORS[@]} == 0 )) && return
+    local hash=$(echo -n "$PWD" | md5 | cut -c1-2)
+    local idx=$(( 16#$hash % ${#_DIR_BG_COLORS[@]} + 1 ))
+    printf "\033]11;#${_DIR_BG_COLORS[$idx]}\007"
+}
+chpwd
