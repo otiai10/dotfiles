@@ -72,16 +72,24 @@ function precmd() {
 # ターミナル背景色をディレクトリごとに固定色にする（cd 時のみ）
 # プリセットの暗め背景色から、ディレクトリのハッシュで1つ選ぶ
 _DIR_BG_COLORS=(
-    "0d1117"  # 黒青（GitHub Dark）
-    "1a0d2e"  # 深紫
-    "0d2a0d"  # 深緑
-    "2a0d0d"  # 深赤
-    "0d1f2a"  # 深青緑
-    "2a1500"  # 深琥珀
+    "0d1117"  # 黒青（GitHub Dark） hue≈220°
+    "1a0d2e"  # 深紫               hue≈270°
+    "0d2a0d"  # 深緑               hue≈120°
+    "2a0d0d"  # 深赤               hue≈  0°
+    "0d1f2a"  # 深青緑             hue≈200°
+    "2a1500"  # 深琥珀             hue≈ 30°
+    "2a002a"  # 深マゼンタ         hue≈300°
+    "1f1f00"  # 深オリーブ         hue≈ 60°
 )
+function mood() {
+    (( ${#_DIR_BG_COLORS[@]} == 0 )) && return
+    local idx=$(( RANDOM % ${#_DIR_BG_COLORS[@]} + 1 ))
+    printf "\033]11;#${_DIR_BG_COLORS[$idx]}\007"
+}
+
 function chpwd() {
     (( ${#_DIR_BG_COLORS[@]} == 0 )) && return
-    local hash=$(echo -n "$PWD" | md5 | cut -c1-2)
+    local hash=$(echo -n "$PWD$(date +%Y%m%d)" | md5 | cut -c1-2)
     local idx=$(( 16#$hash % ${#_DIR_BG_COLORS[@]} + 1 ))
     printf "\033]11;#${_DIR_BG_COLORS[$idx]}\007"
 }
