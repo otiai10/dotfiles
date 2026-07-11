@@ -17,3 +17,4 @@ source ${HOME}/.dotfiles/.zsh/paths
 source ${HOME}/.dotfiles/.zsh/prompts
 source ${HOME}/.dotfiles/.zsh/aliases
 source ${HOME}/.dotfiles/.zsh/bootstrap
+source ${HOME}/.dotfiles/.zsh/secrets
