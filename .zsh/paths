@@ -9,6 +9,7 @@ export PATH=${PATH}:/opt/homebrew/bin
 # }}}
 
 # {{{ asdf
+# TODO: mise へ移行する際、この asdf 初期化ブロックを `eval "$(mise activate zsh)"` に置き換える
 if [ -f "/opt/homebrew/opt/asdf/libexec/asdf.sh" ]; then . /opt/homebrew/opt/asdf/libexec/asdf.sh; fi
 # }}}
 
@@ -27,6 +28,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # }}}
 
 # {{{ asdf
+# TODO: mise へ移行する際、このシムPATHを `$HOME/.local/share/mise/shims` に置き換える（もしくは上の activate 方式に一本化して削除）
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 # }}}
 
